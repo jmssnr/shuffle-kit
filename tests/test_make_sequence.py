@@ -1,4 +1,4 @@
-from unittest.mock import Mock, call, patch
+from unittest.mock import Mock, patch
 
 from shuffl import Deck
 from shuffl.models import make_sequence, shuffles

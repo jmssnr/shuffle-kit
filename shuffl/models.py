@@ -73,14 +73,14 @@ shuffles = {"R": riffle, "S": strip, "C": cut}
 
 
 def make_sequence(steps: Steps | str) -> Shuffle:
-    if type(steps) == str:
+    if isinstance(steps, str):
         keys_valid = [key in shuffles.keys() for key in list(steps)]
 
         if not all(keys_valid):
             raise KeyError("Unknown keys passed")
         try:
             steps = [shuffles[key.capitalize()] for key in list(steps)]
-        except:
+        except KeyError:
             raise KeyError("Unknown shuffle key - valid keys are 'R', 'S' and 'C'")
 
     else:
