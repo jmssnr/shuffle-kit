@@ -24,4 +24,4 @@ jobs:
           python -m poetry install --only docs
       - name: Build and publish docs
         run: |
-          mkdocs gh-deploy --force
+          python -m poetry run mkdocs gh-deploy --force
