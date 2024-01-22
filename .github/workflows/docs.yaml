@@ -1,7 +1,7 @@
 name: Build & Publish Package Documentation
 on:
   push:
-    branches: 
+    branches:
       - main
 permissions:
   contents: write
@@ -23,4 +23,5 @@ jobs:
           python -m pip install --upgrade poetry
           python -m poetry install --only docs
       - name: Build and publish docs
-      - run: mkdocs gh-deploy --force
+      - run: |
+          mkdocs gh-deploy --force
