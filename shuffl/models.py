@@ -46,7 +46,6 @@ def strip(deck: Deck) -> Deck:
     Returns:
         Shuffled list of hashable and unique items.
     """
-    print("strip...")
     n = len(deck)
     shuffled_deck = []
     while len(deck) > 0:

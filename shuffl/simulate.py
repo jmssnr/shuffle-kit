@@ -62,5 +62,5 @@ def _repeat(shuffle: Shuffle, deck: Deck, num: int) -> list[Deck]:
 
 
 def simulate(shuffle: Shuffle, deck: Deck, num: int) -> SimulationResult:
-    result = _repeat(shuffle, deck, int)
-    return SimulationResult(sample=result, initial_deck=deck)
+    result = _repeat(shuffle, deck, num)
+    return SimulationResult(result, initial_deck=deck)
