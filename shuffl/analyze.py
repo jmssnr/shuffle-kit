@@ -3,19 +3,46 @@ from itertools import accumulate
 from math import sqrt, log
 from .simulate import SimulationResult
 
+EmpiricalCDF = Callable[[Hashable], Tuple[list[float], float]]
+EmpiricalProbability = Callable[[Hashable], Tuple[list[float], float, float]]
+
 
 def _confidence_bands(result: SimulationResult, alpha: float) -> float:
-    num = len(result.result)
-    return sqrt(log(2 / alpha) / 2 / num)
+    return sqrt(log(2 / alpha) / 2 / result.num)
 
 
-def empirical_cdf(
-    result: SimulationResult, alpha: float = 0.95
-) -> Callable[[Hashable], Tuple[list[float], float]]:
+def _empirical_probability(result: SimulationResult) -> EmpiricalProbability:
+    def proba(card: Hashable) -> Tuple[list[float], float, float]:
+        lst = []
+        for i in range(0, len(result.deck)):
+            sublist = []
+            for e in result.samples:
+                sublist.append(i == e.index(card))
+            lst.append(sum(sublist) / result.num)
+
+        mean = sum([p * card for p, card in zip(lst, result.deck)])
+        std = sqrt(sum([(card - mean) ** 2 * p for p, card in zip(lst, result.deck)]))
+        return lst, mean, std
+
+    return proba
+
+
+def _empirical_cdf(
+    proba: EmpiricalProbability, result: SimulationResult, alpha: float = 0.95
+) -> EmpiricalCDF:
     eps = _confidence_bands(result, alpha)
 
     def ecdf(card: Hashable) -> Tuple[list[float], float]:
-        idx = result.initial_deck.index(card)
-        return (list(accumulate(result.proba[idx])), eps)
+        return (list(accumulate(proba(card))), eps)
 
     return ecdf
+
+
+def evaluate(
+    result: SimulationResult, alpha: float = 0.95
+) -> Tuple[EmpiricalProbability, EmpiricalCDF]:
+    proba = _empirical_probability(result)
+
+    ecdf = _empirical_cdf(proba, result, alpha)
+
+    return proba, ecdf
