@@ -1,5 +1,5 @@
-from .deck import Deck
-from .models import Shuffle
+from ._deck import Deck
+from ._models import Shuffle
 from dataclasses import dataclass
 
 

@@ -1,5 +1,5 @@
-from shuffl.models import riffle
-from shuffl.exceptions import DuplicateItemError, NotHashableError
+from shuffl._models import riffle
+from shuffl._exceptions import DuplicateItemError, NotHashableError
 from shuffl import Deck
 import pytest
 

@@ -13,7 +13,7 @@ from typing import Callable
 
 import numpy as np
 
-from .deck import Deck
+from ._deck import Deck
 
 Shuffle = Callable[[Deck], Deck]
 Steps = list[Shuffle]

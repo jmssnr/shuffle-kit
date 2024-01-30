@@ -1,7 +1,7 @@
 from typing import Hashable, Tuple, Callable
 from itertools import accumulate
 from math import sqrt, log
-from .simulate import SimulationResult
+from ._simulate import SimulationResult
 
 EmpiricalCDF = Callable[[Hashable], Tuple[list[float], float]]
 EmpiricalProbability = Callable[[Hashable], Tuple[list[float], float, float]]

@@ -4,7 +4,7 @@
 
 from typing import Hashable, Iterable
 
-from .exceptions import DuplicateItemError, NotHashableError
+from ._exceptions import DuplicateItemError, NotHashableError
 
 
 def _check_valid_iterable(iterable: Iterable) -> "Deck":

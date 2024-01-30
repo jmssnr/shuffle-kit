@@ -1,7 +1,7 @@
 import pytest
 
 from shuffl import Deck
-from shuffl.exceptions import DuplicateItemError, NotHashableError
+from shuffl._exceptions import DuplicateItemError, NotHashableError
 
 
 def test_does_not_allow_duplicate_on_init():

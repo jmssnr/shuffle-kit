@@ -1,7 +1,7 @@
 from unittest.mock import Mock, patch
 
 from shuffl import Deck
-from shuffl.models import make_sequence, shuffles
+from shuffl._models import make_sequence, shuffles
 
 
 def test_creates_shuffle_sequence_from_string_input():
@@ -17,9 +17,9 @@ def test_creates_shuffle_sequence_from_string_input():
 
 def test_creates_shuffle_squence_from_callables():
     with (
-        patch("shuffl.models.riffle") as mock_riffle,
-        patch("shuffl.models.strip") as mock_strip,
-        patch("shuffl.models.cut") as mock_cut,
+        patch("shuffl.riffle") as mock_riffle,
+        patch("shuffl.strip") as mock_strip,
+        patch("shuffl.cut") as mock_cut,
         patch.dict(
             shuffles, {"R": mock_riffle, "S": mock_strip, "C": mock_cut}, clear=True
         ),
