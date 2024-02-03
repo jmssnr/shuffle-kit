@@ -1,5 +1,5 @@
 
-![logo](./docs/logos/shuffl-logo.png)
+![logo](./docs/logos/shuffl-logo-small.png)
 
 [![Build & Publish Package Documentation](https://github.com/jmssnr/shuffle-kit/actions/workflows/docs.yaml/badge.svg)](https://github.com/jmssnr/shuffle-kit/actions/workflows/docs.yaml)
 
