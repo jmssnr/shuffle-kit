@@ -1,14 +1,21 @@
-site_name: My Docs
+site_name: shuffle-kit
 
 theme:
   name: "material"
+  logo: logos/shuffl-logo.png
+  favicon: logos/shuffl-logo.png
+  palette:
+    primary: pink
 
 plugins:
   - mkdocstrings
 
+markdown_extensions:
+  - md_in_html
+
 nav:
-  - Package Docs: index.md
-  - tutorials.md
-  - How-To Guides: how-to-guides.md
-  - reference.md
-  - explanation.md
+  - Getting started: index.md
+  - Tutorials: tutorials.md
+  - Guides: how-to-guides.md
+  - Explanations: explanation.md
+  - API reference: reference.md
