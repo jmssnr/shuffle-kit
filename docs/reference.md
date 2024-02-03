@@ -1,1 +1,3 @@
-::: shuffl.deck
+::: shuffl._deck
+::: shuffl._models
+::: shuffl._simulate
