@@ -2,7 +2,7 @@
 ![logo](./docs/logos/shuffle-kit-logo-small.png)
 
 [![docs](https://github.com/jmssnr/shuffle-kit/actions/workflows/docs.yaml/badge.svg)](https://github.com/jmssnr/shuffle-kit/actions/workflows/docs.yaml)
-
+_
 ![PyPI - Version](https://img.shields.io/pypi/v/shuffl)
 
 
