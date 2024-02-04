@@ -1,4 +1,4 @@
-name: Build & Publish Package Documentation
+name: Docs
 on:
   push:
     branches:
