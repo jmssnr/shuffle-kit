@@ -1,4 +1,4 @@
-# Create and use your first model
+## Create and use your first model
 
 ```py
 from shuffl import make_sequence, Deck
