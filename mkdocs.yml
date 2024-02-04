@@ -10,10 +10,17 @@ theme:
     primary: pink
   icon:
     repo: fontawesome/brands/github
-
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tabs
+    - navigation.sections
+    - navigation.path
+    - search.suggest
 
 plugins:
   - mkdocstrings
+  - search
 
 markdown_extensions:
   - md_in_html
