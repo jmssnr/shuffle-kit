@@ -20,8 +20,8 @@ def _empirical_probability(result: SimulationResult) -> EmpiricalProbability:
                 sublist.append(i == e.index(card))
             lst.append(sum(sublist) / result.num)
 
-        mean = sum([p * card for p, card in zip(lst, result.deck)])
-        std = sqrt(sum([(card - mean) ** 2 * p for p, card in zip(lst, result.deck)]))
+        mean = sum([p * idx for idx, p in enumerate(lst, 1)])
+        std = sqrt(sum([(idx - mean) ** 2 * p for idx, p in enumerate(lst, 1)]))
         return lst, mean, std
 
     return proba
