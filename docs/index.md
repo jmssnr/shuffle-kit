@@ -1,5 +1,5 @@
 <figure markdown>
-  ![Image title](https://raw.githubusercontent.com/jmssnr/shuffle-kit/main/docs/logos/shuffl-logo-small.png)
+  ![Image title](https://raw.githubusercontent.com/jmssnr/shuffle-kit/main/docs/logos/shuffle-kit-logo-small.png)
 </figure>
 
 **shuffle-kit** is a Python package for modelling and analyzing playing card shuffles.

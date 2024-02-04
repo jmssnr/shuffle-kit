@@ -2,8 +2,8 @@ site_name: shuffle-kit
 
 theme:
   name: "material"
-  logo: logos/shuffl-logo.png
-  favicon: logos/shuffl-logo.png
+  logo: logos/shuffle-kit-logo.png
+  favicon: logos/shuffle-kit-logo.png
   palette:
     primary: pink
 
