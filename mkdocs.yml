@@ -1,11 +1,16 @@
 site_name: shuffle-kit
 
+repo_url: https://github.com/jmssnr/shuffle-kit
+
 theme:
   name: "material"
   logo: logos/shuffle-kit-logo.png
   favicon: logos/shuffle-kit-logo.png
   palette:
     primary: pink
+  icon:
+    repo: fontawesome/brands/github
+
 
 plugins:
   - mkdocstrings
