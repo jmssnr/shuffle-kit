@@ -34,8 +34,14 @@ markdown_extensions:
 
 
 nav:
-  - Getting started: index.md
-  - Tutorials: tutorials.md
+  - Getting started:
+    - About shuffle-kit: getting-started/about.md
+    - Installation: getting-started/installation.md
+    - Contributing: getting-started/contributing.md
+  - Tutorials:
+    - Creating a shuffle model: tutorials/shuffle-model.md
+    - A first shuffle simulation: tutorials/first-simulation.md
+    - Empirical probability distribution: tutorials/probabilities.md
   - Guides: how-to-guides.md
   - Explanations: explanation.md
   - API reference: reference.md
