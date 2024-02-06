@@ -33,7 +33,8 @@ def _empirical_cdf(
     eps = _confidence_bands(result, alpha)
 
     def ecdf(card: Hashable) -> Tuple[list[float], float]:
-        return (list(accumulate(proba(card))), eps)
+        dist, _, _ = proba(card)
+        return (list(accumulate(dist)), eps)
 
     return ecdf
 

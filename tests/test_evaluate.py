@@ -11,7 +11,20 @@ def test_empirical_probability():
 
     proba, _ = evaluate(result)
 
-    dist, mean, _ = proba("A")
+    dist, _, _ = proba("A")
 
     assert dist == [2 / 3, 1 / 3, 0]
-    assert mean == 2 / 3 + 1 / 3 * 2
+
+
+def test_empirical_cdf():
+    deck = Deck(["A", "B", "C"])
+
+    samples = [["A", "C", "B"], ["B", "A", "C"], ["A", "C", "B"]]
+
+    result = SimulationResult(samples=samples, deck=deck, num=3)
+
+    _, ecdf = evaluate(result)
+
+    f, _ = ecdf("A")
+
+    assert f == [2 / 3, 1, 1]
