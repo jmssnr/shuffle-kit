@@ -1,3 +1,4 @@
 ::: shuffl._deck
-::: shuffl._models
+::: shuffl.models
+::: shuffl.analyze
 ::: shuffl._simulate
