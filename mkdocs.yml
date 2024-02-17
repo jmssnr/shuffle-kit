@@ -35,7 +35,6 @@ markdown_extensions:
 
 nav:
   - Getting started:
-    - About shuffle-kit: getting-started/about.md
     - Installation: getting-started/installation.md
     - Contributing: getting-started/contributing.md
   - Tutorials:
