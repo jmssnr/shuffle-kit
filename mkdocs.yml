@@ -37,10 +37,7 @@ nav:
   - Getting started:
     - Installation: getting-started/installation.md
     - Contributing: getting-started/contributing.md
-  - Tutorials:
-    - Creating a shuffle model: tutorials/shuffle-model.md
-    - A first shuffle simulation: tutorials/first-simulation.md
-    - Empirical probability distribution: tutorials/probabilities.md
+  - Tutorials: tutorials/index.md
   - Guides: how-to-guides.md
   - Explanations: explanation.md
   - API reference: reference.md
