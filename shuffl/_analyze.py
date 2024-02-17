@@ -1,49 +1,51 @@
-from typing import Hashable, Tuple, Callable
-from itertools import accumulate
-from math import sqrt, log
-from ._simulate import SimulationResult
-
-EmpiricalCDF = Callable[[Hashable], Tuple[list[float], float]]
-EmpiricalProbability = Callable[[Hashable], Tuple[list[float], float, float]]
+from ._deck import Deck
+from ._models import Shuffle
+from dataclasses import dataclass
 
 
-def _confidence_bands(result: SimulationResult, alpha: float) -> float:
-    return sqrt(log(2 / alpha) / 2 / result.num)
+@dataclass
+class SimulationResult:
+    samples: list[Deck]
+    deck: list
+    num: int
+    probability: list[list[float]]
 
 
-def _empirical_probability(result: SimulationResult) -> EmpiricalProbability:
-    def proba(card: Hashable) -> Tuple[list[float], float, float]:
-        lst = []
-        for i in range(0, len(result.deck)):
-            sublist = []
-            for e in result.samples:
-                sublist.append(i == e.index(card))
-            lst.append(sum(sublist) / result.num)
-
-        mean = sum([p * idx for idx, p in enumerate(lst, 1)])
-        std = sqrt(sum([(idx - mean) ** 2 * p for idx, p in enumerate(lst, 1)]))
-        return lst, mean, std
-
-    return proba
+def _repeat(shuffle: Shuffle, deck: Deck, num: int) -> list[Deck]:
+    return [shuffle(deck) for _ in range(0, num)]
 
 
-def _empirical_cdf(
-    proba: EmpiricalProbability, result: SimulationResult, alpha: float = 0.95
-) -> EmpiricalCDF:
-    eps = _confidence_bands(result, alpha)
-
-    def ecdf(card: Hashable) -> Tuple[list[float], float]:
-        dist, _, _ = proba(card)
-        return (list(accumulate(dist)), eps)
-
-    return ecdf
+def _probabilities(samples: list[Deck], deck: Deck, num: int) -> list[list[float]]:
+    return [
+        [sum([i == e.index(card) for e in samples]) / num for i in range(len(deck))]
+        for card in deck
+    ]
 
 
-def evaluate(
-    result: SimulationResult, alpha: float = 0.95
-) -> Tuple[EmpiricalProbability, EmpiricalCDF]:
-    proba = _empirical_probability(result)
+def simulate(shuffle: Shuffle, deck: Deck, num: int) -> SimulationResult:
+    """Simulates and analyzes empirical probabilities for a given shuffle model.
+    Each simulation run resets to the given initial deck.
 
-    ecdf = _empirical_cdf(proba, result, alpha)
+    Args:
+        shuffle (Shuffle): Shuffle model
+        deck (Deck): Initial deck
+        num (int): Number of simulations
 
-    return proba, ecdf
+    Returns:
+        SimulationResult: Result object
+    """
+    result = _repeat(shuffle, deck, num)
+    proba = _probabilities(result, deck, num)
+    return SimulationResult(samples=result, probability=proba, deck=deck, num=num)
+
+
+def _empirical_cdf():
+    raise NotImplementedError
+
+
+def _mean():
+    raise NotImplementedError
+
+
+def _std():
+    raise NotImplementedError

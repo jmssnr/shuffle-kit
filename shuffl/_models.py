@@ -1,17 +1,5 @@
-"""Provides several different shuffling models.
-
-This module allows the user to model arbitrary shuffling sequences.
-
-The module contains the following functions:
-
-- `riffle(deck)` - Returns a shuffled list of hashable and unique elements.
-- `strip(deck)` - Returns a shuffled list of hashable and unique elements.
-- `cut(deck)` - Returns a shuffled list of hashable and unique elements.
-"""
-
-from typing import Callable
-
 import numpy as np
+from typing import Callable
 
 from ._deck import Deck
 
@@ -19,74 +7,113 @@ Shuffle = Callable[[Deck], Deck]
 Steps = list[Shuffle]
 
 
-def riffle(deck: Deck) -> Deck:
-    """Performs a standard riffle shuffle.
+def gsr(deck: Deck) -> Deck:
+    """Gilbert-Shannon-Reeds model for riffle shuffling.
 
-    Examples:
-        >>> riffle(Deck([1,2,3]))
-        [2, 1, 3]
+    A deck of n cards is cut about in half according to a binomial
+    distribution. The cards from the two packets are then riffled in
+    such a way, that the probability of dropping a card from either
+    half is proportional to the respective packet size.
+
+    There are several analogous interpretations of the GSR model.
+    This function implements the geometric interpretation.
+
+    **References**:
+
+    - Bayer D., Diaconis P. (1992). Trailing the dovetail shuffle to its lair.
+    The Annals of Applied Probability, Vol. 2, No. 2, 294-313
 
     Args:
-        deck: List of hashable and unique items.
+        deck (Deck): Initial deck
 
     Returns:
-        Shuffled list of hashable and unique items.
+        Deck: The deck after riffle shuffling.
     """
     x = np.sort(np.random.uniform(low=0, high=1, size=len(deck)))
     y = 2 * x % 1
     return Deck([deck[i] for i in np.argsort(y)])
 
 
-def strip(deck: Deck) -> Deck:
-    """Performs a strip cut.
+def thorp(deck: Deck) -> Deck:
+    """Thorp model for riffle shuffling.
+
+    The model cuts a deck of 2n cards into two packets of size n, and
+    then starts dropping the cards from the left or right hand, such that
+    each time one chooses the left or right card with probability 1/2 and
+    then drops the card from the opposite hand.
+
+    **References**:
+
+    - Thorp E. O. (1973). Nonrandom shuffling with applications to the game of Faro.
+    Journal of the American Statistical Association, Vol. 68, No. 344, 842-847.
 
     Args:
-        deck: List of hashable and unique elements.
+        deck (Deck): Initial deck
 
     Returns:
-        Shuffled list of hashable and unique items.
+        Deck: The deck after riffle shuffling
     """
-    n = len(deck)
-    shuffled_deck = []
-    while len(deck) > 0:
-        slice = np.random.binomial(n, 0.25)
-        shuffled_deck = deck[:slice] + shuffled_deck
-        deck = deck[slice:]
-    return Deck(shuffled_deck)
+    n = int(len(deck) / 2)
+    cointoss = np.random.binomial(1, 0.5, n)
+    left, right = deck[:n], deck[n:]
+    shuffled = []
+    for c in cointoss:
+        if c == 0:
+            shuffled.extend([left.pop(0), right.pop(0)])
+        else:
+            shuffled.extend([right.pop(0), left.pop(0)])
+    return Deck(shuffled)
+
+
+def strip(deck: Deck) -> Deck:
+    """Coin toss model for strip cutting a deck of cards.
+
+    The implementation is based on the coin toss interpretation
+    of the strip shuffle.
+
+    Args:
+        deck (Deck): Initial deck
+
+    Returns:
+        Deck: The deck after strip cutting.
+    """
+    n = int(len(deck))
+    cointoss = np.random.binomial(1, 0.2, n - 1)
+    breakpoints = (np.flatnonzero(cointoss) + 1).tolist()
+    split_packets = np.split(deck, breakpoints)
+    return Deck([s for p in reversed(split_packets) for s in p])
 
 
 def cut(deck: Deck) -> Deck:
-    """Performs a regular cut.
+    """Model for cutting a deck about in half and completing
+    the cut.
+
+    Cuts a given deck according to a binomial distribution.
+
+    **References:**
+
+    - Bayer D., Diaconis P. (1992). Trailing the dovetail shuffle to its lair.
+    The Annals of Applied Probability, Vol. 2, No. 2, 294-313.
 
     Args:
-        deck: List of hashable and unique elements.
+        deck (Deck): Initial deck
 
     Returns:
-        Shuffled list of hashable and unique items.
+        Deck: Deck of cards after cutting
     """
-    slice = np.random.binomial(len(deck), 0.5)
-    return Deck(deck[slice:] + deck[:slice])
+    cut_point = np.random.binomial(len(deck), 0.5)
+    return Deck(deck[cut_point:] + deck[:cut_point])
 
 
-shuffles = {"R": riffle, "S": strip, "C": cut}
+def sequence(steps: list[Shuffle]) -> Shuffle:
+    """Chains individual shuffles into a sequence of shuffles.
 
+    Args:
+        steps (list[Shuffle]): Individual shuffle models
 
-def make_sequence(steps: Steps | str) -> Shuffle:
-    if isinstance(steps, str):
-        keys_valid = [key in shuffles.keys() for key in list(steps)]
-
-        if not all(keys_valid):
-            raise KeyError("Unknown keys passed")
-        try:
-            steps = [shuffles[key.capitalize()] for key in list(steps)]
-        except KeyError:
-            raise KeyError("Unknown shuffle key - valid keys are 'R', 'S' and 'C'")
-
-    else:
-        shuffles_valid = [s in shuffles.values() for s in steps]
-
-        if not all(shuffles_valid):
-            raise KeyError("Unknown shuffle passed")
+    Returns:
+        Shuffle: Sequence composed of individual shuffle models
+    """
 
     def shuffle(deck: Deck) -> Deck:
         for step in steps:

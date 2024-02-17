@@ -16,3 +16,11 @@ def test_cut_returns_deck():
 
     with pytest.raises(NotHashableError):
         deck.append({})
+
+
+def test_cut_burries_top_card():
+    deck = Deck(range(1, 11))
+
+    deck = cut(deck)
+
+    assert deck.index(1) > 1

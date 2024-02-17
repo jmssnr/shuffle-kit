@@ -1,4 +1,4 @@
-from shuffl.models import gsr
+from shuffl import gsr
 from shuffl import Deck
 import numpy as np
 

@@ -1,5 +1,5 @@
-from shuffl.models import gsr, sequence
-from shuffl.analyze import guessing_game
+from shuffl import gsr, sequence
+from shuffl.games import guessing_game
 from shuffl import Deck
 import numpy as np
 
