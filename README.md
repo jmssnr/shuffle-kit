@@ -21,7 +21,7 @@ shuffle-kit requires:
 
 The easiest way to install shuffle-kit is via pip:
 
-`pip install shuffl`
+`pip install shuffle-kit`
 
 # Examples
 

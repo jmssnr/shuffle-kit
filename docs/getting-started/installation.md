@@ -14,7 +14,7 @@ pip --version
 To install the latest stable version in your current Python environment, run:
 
 ```
-pip install shuffl
+pip install shuffle-kit
 ```
 
 ## Installing using Poetry

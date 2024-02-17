@@ -1,9 +1,13 @@
 [tool.poetry]
-name = "shuffl"
+name = "shuffle-kit"
 version = "0.1.0"
 description = ""
 authors = ["jmssnr <maussner.johannes@gmail.com>"]
 readme = "README.md"
+documentation = "https://jmssnr.github.io/shuffle-kit/"
+packages = [
+    { include = "shuffl" }
+]
 
 [tool.poetry.dependencies]
 python = "^3.11"
