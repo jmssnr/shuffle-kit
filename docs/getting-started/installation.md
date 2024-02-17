@@ -22,5 +22,5 @@ pip install shuffle-kit
 To install shuffle-kit into an existing [Poetry](https://python-poetry.org/) project, run:
 
 ```
-poetry add shuffl
+poetry add shuffle-kit
 ```
