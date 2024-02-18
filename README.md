@@ -1,6 +1,6 @@
 ![logo](./docs/logos/shuffle-kit-logo-small.png)
 
-[![docs](https://github.com/jmssnr/shuffle-kit/actions/workflows/docs.yaml/badge.svg)](https://github.com/jmssnr/shuffle-kit/actions/workflows/docs.yaml)_![PyPI - Version](https://img.shields.io/pypi/v/shuffl)_[![Test](https://github.com/jmssnr/shuffle-kit/actions/workflows/test.yaml/badge.svg)](https://github.com/jmssnr/shuffle-kit/actions/workflows/test.yaml)
+[![docs](https://github.com/jmssnr/shuffle-kit/actions/workflows/docs.yaml/badge.svg)](https://github.com/jmssnr/shuffle-kit/actions/workflows/docs.yaml)_![PyPI - Version](https://img.shields.io/pypi/v/shuffle-kit)_[![Test](https://github.com/jmssnr/shuffle-kit/actions/workflows/test.yaml/badge.svg)](https://github.com/jmssnr/shuffle-kit/actions/workflows/test.yaml)
 
 **shuffle-kit** is a Python package for modelling and analyzing playing card shuffles.
 
