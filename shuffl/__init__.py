@@ -1,9 +1,10 @@
 from ._deck import Deck
-from ._analyze import simulate, SimulationResult
-from ._models import sequence, gsr, thorp, strip, cut
+from ._analyze import simulate, SimulationResult, risingseq
+from ._models import sequence, gsr, thorp, strip, cut, Shuffle
 
 __all__ = [
     Deck,
+    Shuffle,
     simulate,
     sequence,
     gsr,
@@ -11,4 +12,5 @@ __all__ = [
     strip,
     cut,
     SimulationResult,
+    risingseq,
 ]

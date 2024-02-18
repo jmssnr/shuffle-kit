@@ -1,6 +1,7 @@
 from ._deck import Deck
 from ._models import Shuffle
 from dataclasses import dataclass
+from typing import Tuple
 
 
 @dataclass
@@ -49,3 +50,28 @@ def _mean():
 
 def _std():
     raise NotImplementedError
+
+
+def risingseq(deck: list[int]) -> Tuple[list[list], int]:
+    """Iteratively determines all rising sequences in a
+    given list of integers.
+
+    Args:
+        deck (list[int]): List of unique integers
+
+    Returns:
+        Tuple[list[list], int]: List of all rising sequences and total
+        number of rising sequences
+    """
+    deck = deck.copy()
+    sequences = []
+    while len(deck) > 0:
+        card = deck.pop(0)
+        subseq = [card]
+        for i in range(len(deck)):
+            if subseq[-1] + 1 == deck[i]:
+                subseq.append(deck[i])
+        sequences.append(subseq)
+        for i in subseq[1:]:
+            deck.pop(deck.index(i))
+    return sequences, len(sequences)
