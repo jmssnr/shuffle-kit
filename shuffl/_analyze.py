@@ -3,6 +3,7 @@ from ._models import Shuffle
 from dataclasses import dataclass
 from operator import add, sub
 from typing import Tuple, Union
+from itertools import pairwise
 
 
 @dataclass
@@ -94,3 +95,15 @@ def descendingseq(deck: list[int]) -> Tuple[list[list], int]:
         number of rising sequences
     """
     return _sequences(deck, sub)
+
+
+def adjacent(deck: Deck) -> int:
+    """Returns the total number of pairs of adjacent cards in a given deck.
+
+    Args:
+        deck (Deck): A given deck.
+
+    Returns:
+        int: Total number of pairs of adjacent cards.
+    """
+    return sum([j == i + 1 for (i, j) in pairwise(deck)])

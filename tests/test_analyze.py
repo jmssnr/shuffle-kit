@@ -1,4 +1,4 @@
-from shuffl import risingseq, descendingseq, Deck, gsr, sequence
+from shuffl import risingseq, descendingseq, Deck, gsr, sequence, adjacent
 import pytest
 
 
@@ -12,3 +12,13 @@ def test_sum_of_rising_descending(n, k, expected):
     num_descen = descendingseq(shuffled)[1]
 
     assert num_rising + num_descen == expected
+
+
+def test_adjacent_for_ordered_deck():
+    deck = Deck(range(1, 53))
+    assert adjacent(deck) == 51
+
+
+def test_adjacent_for_shuffled_deck():
+    deck = Deck([1, 2, 6, 10])
+    assert adjacent(deck) == 1
