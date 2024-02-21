@@ -1,6 +1,6 @@
 from shuffl import Deck
 from itertools import pairwise
-from shuffl.utils import _convert
+from shuffl.utils import convert
 from typing import Annotated
 from typing_extensions import Doc
 
@@ -31,7 +31,7 @@ def adjacent(
     print(adjacent(permutation, deck))
     ```
     """
-    permutation = _convert(permutation, original)
+    permutation = convert(permutation, original)
     return [
         (original[i], original[j]) for (i, j) in pairwise(permutation) if i + 1 == j
     ]
