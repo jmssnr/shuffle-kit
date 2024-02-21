@@ -1,7 +1,8 @@
 from shuffl import Deck
 from shuffl.models import Shuffle
 import numpy as np
-from typing import Annotated, Doc
+from typing import Annotated
+from typing_extensions import Doc
 from itertools import groupby
 from operator import itemgetter
 

@@ -1,7 +1,8 @@
 from shuffl import Deck
 from itertools import pairwise
 from shuffl.utils import _convert
-from typing import Annotated, Doc
+from typing import Annotated
+from typing_extensions import Doc
 
 
 def adjacent(

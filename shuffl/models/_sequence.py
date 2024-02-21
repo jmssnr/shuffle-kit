@@ -1,5 +1,6 @@
 from shuffl import Deck
-from typing import Annotated, Doc, TypeAlias, Callable
+from typing import Annotated, TypeAlias, Callable
+from typing_extensions import Doc
 
 Shuffle: TypeAlias = Callable[[Deck], Deck]
 

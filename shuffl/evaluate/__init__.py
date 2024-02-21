@@ -14,7 +14,6 @@ The implemented functions include:
 from ._adjacent import adjacent
 from ._frequencies import frequencies
 from ._guessing import guess
-from ._sequences import risings, descendants
 from ._solitaire import solitaire
 
-__all__ = [adjacent, frequencies, guess, risings, descendants, solitaire]
+__all__ = [adjacent, frequencies, guess, solitaire]

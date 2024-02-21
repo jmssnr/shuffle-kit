@@ -1,6 +1,7 @@
 from shuffl import Deck
 import numpy as np
-from typing import Annotated, Doc
+from typing import Annotated
+from typing_extensions import Doc
 
 
 def gsr(

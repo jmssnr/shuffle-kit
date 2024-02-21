@@ -1,6 +1,7 @@
 from shuffl.models import Shuffle
 from shuffl import Deck
-from typing import Annotated, Doc
+from typing import Annotated
+from typing_extensions import Doc
 
 
 def _repeat(shuffle: Shuffle, deck: Deck, num: int) -> list[Deck]:

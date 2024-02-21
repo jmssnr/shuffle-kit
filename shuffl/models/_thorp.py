@@ -1,6 +1,7 @@
 import numpy as np
 from shuffl import Deck
-from typing import Annotated, Doc
+from typing import Annotated
+from typing_extensions import Doc
 
 
 def thorp(
