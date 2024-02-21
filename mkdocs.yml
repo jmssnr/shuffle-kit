@@ -19,7 +19,21 @@ theme:
     - search.suggest
 
 plugins:
-  - mkdocstrings
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            extensions:
+              - griffe_typingdoc
+            show_root_heading: true
+            show_if_no_docstring: true
+            inherited_members: true
+            members_order: source
+            unwrap_annotated: true
+            signature_crossrefs: true
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+            docstring_section_style: spacy
   - search
 
 markdown_extensions:
@@ -32,12 +46,13 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.superfences
 
-
 nav:
   - Getting started:
-    - Installation: getting-started/installation.md
-    - Contributing: getting-started/contributing.md
+      - Installation: getting-started/installation.md
+      - Contributing: getting-started/contributing.md
   - Tutorials: tutorials/index.md
   - Guides: how-to-guides.md
   - Explanations: explanation.md
-  - API reference: reference.md
+  - API reference:
+      - reference/models.md
+      - reference/evaluate.md

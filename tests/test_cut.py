@@ -19,7 +19,7 @@ def test_cut_returns_deck():
 
 
 def test_cut_burries_top_card():
-    deck = Deck(range(1, 11))
+    deck = Deck(range(1, 53))
 
     deck = cut(deck)
 

@@ -283,6 +283,21 @@ files = [
 colorama = ">=0.4"
 
 [[package]]
+name = "griffe-typingdoc"
+version = "0.2.5"
+description = "Griffe extension for PEP 727 – Documentation Metadata in Typing."
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "griffe_typingdoc-0.2.5-py3-none-any.whl", hash = "sha256:9de51529c46cc318b5920f999518f220a2b267d38568b7a62839020282aa2072"},
+    {file = "griffe_typingdoc-0.2.5.tar.gz", hash = "sha256:88d308ebd9ccbb6d7270356900b987fcc6b7854e7d461a970916397427b0f9a6"},
+]
+
+[package.dependencies]
+griffe = ">=0.38"
+typing-extensions = ">=4.7"
+
+[[package]]
 name = "identify"
 version = "2.5.33"
 description = "File identification library for Python"
@@ -1038,6 +1053,17 @@ files = [
 ]
 
 [[package]]
+name = "typing-extensions"
+version = "4.9.0"
+description = "Backported and Experimental Type Hints for Python 3.8+"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "typing_extensions-4.9.0-py3-none-any.whl", hash = "sha256:af72aea155e91adfc61c3ae9e0e342dbc0cba726d6cba4b6c72c1f34e47291cd"},
+    {file = "typing_extensions-4.9.0.tar.gz", hash = "sha256:23478f88c37f27d76ac8aee6c905017a143b0b1b886c3c9f66bc2fd94f9f5783"},
+]
+
+[[package]]
 name = "urllib3"
 version = "2.1.0"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
@@ -1115,4 +1141,4 @@ watchmedo = ["PyYAML (>=3.10)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "cc72108e148367b288e2be654b569efff58653bfaa0572fae2ca2202dc70157c"
+content-hash = "7ab2f9e74760a6b21a98422f1892eb155c62f97c4ba2dee5e894638dfcefff19"
