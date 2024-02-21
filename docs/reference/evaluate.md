@@ -3,3 +3,5 @@
         members:
         - adjacent
         - frequencies
+        - solitaire
+        - guess
