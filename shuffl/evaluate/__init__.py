@@ -1,14 +1,14 @@
 """
-This module provides different functions to evaluate shuffle models.
+This module provides different functions to evaluate shuffle models
+based on Monte-Carlo simulations.
 
 The implemented functions include:
 
-- `adjacent`: Return all adjacent pairs in a permutation
-- `frequencies`: Computes empirical probabilities from Monte-Carlo simulations
-- `guess`: Evaluates shuffles based on the ability to guess cards 
-- `risings`: Return all rising sequences in a permutation
-- `descendants`: Return all descendants in a permutation
-- `solitaire`: Evaluates results for playing New Age Solitaire
+- `adjacent`: Returns average number of adjacent pairs in a permutation
+- `frequencies`: Returns empirical probabilities
+- `guess`: Returns average number of correct guesses of the top card 
+- `risingseq`: Returns average number of rising sequences in a permutation
+- `solitaire`: Returns probability of Player A winning at the game New Age Solitaire
 """
 
 from ._adjacent import adjacent

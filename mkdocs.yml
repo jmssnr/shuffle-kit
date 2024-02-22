@@ -54,5 +54,7 @@ nav:
   - Guides: how-to-guides.md
   - Explanations: explanation.md
   - API reference:
+      - reference/core.md
       - reference/models.md
       - reference/evaluate.md
+      - reference/utilities.md

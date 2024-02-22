@@ -4,13 +4,8 @@ from typing import Annotated
 from typing_extensions import Doc
 
 
-def _repeat(shuffle: Shuffle, deck: Deck, num: int) -> list[Deck]:
-    return [shuffle(deck) for _ in range(0, num)]
-
-
 def frequencies(
     shuffle: Annotated[Shuffle, Doc("A shuffle model")],
-    deck: Annotated[Deck, Doc("Initial deck of cards")],
     num: Annotated[int, Doc("Number of Monte-Carlo simulations")] = 1000,
 ) -> Annotated[
     list[list[float]], Doc("Discrete probability density function for every card")
@@ -42,7 +37,8 @@ def frequencies(
     print(proba[0])
     ```
     """
-    samples = _repeat(shuffle, deck, num)
+    deck = Deck(range(1, 53))
+    samples = [shuffle(deck) for _ in range(0, num)]
 
     return [
         [sum([i == e.index(card) for e in samples]) / num for i in range(len(deck))]

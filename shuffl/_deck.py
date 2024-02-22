@@ -1,7 +1,3 @@
-"""Provides a list implementation that only allows hashable and unique elements.
-"""
-
-
 from typing import Hashable, Iterable
 
 from ._exceptions import DuplicateItemError, NotHashableError

@@ -40,7 +40,6 @@ def _round(initial_deck: Deck, shuffle: Shuffle) -> int:
 
 def guess(
     shuffle: Annotated[Shuffle, Doc("A shuffle model")],
-    deck: Annotated[Deck, Doc("Initial deck of cards")],
     num: Annotated[int, Doc("Number of Monte-Carlo simulations")] = 1000,
 ) -> Annotated[float, Doc("Average number of correct guesses")]:
     """A guesser has to guess the top card of a face down
@@ -55,4 +54,5 @@ def guess(
     - Bayer D., Diaconis P. (1992). Trailing the dovetail shuffle to its lair.
     The Annals of Applied Probability, Vol. 2, No. 2, 294-313.
     """
+    deck = Deck(range(1, 53))
     return np.mean([_round(deck, shuffle) for _ in range(num)])

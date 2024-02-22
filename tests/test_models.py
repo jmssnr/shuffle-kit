@@ -7,9 +7,9 @@ from unittest.mock import patch
 
 def test_creates_shuffle_squence_from_callables():
     with (
-        patch("shuffl.gsr") as mock_riffle,
-        patch("shuffl.strip") as mock_strip,
-        patch("shuffl.cut") as mock_cut,
+        patch("shuffl.models.gsr") as mock_riffle,
+        patch("shuffl.models.strip") as mock_strip,
+        patch("shuffl.models.cut") as mock_cut,
     ):
         shuffle = sequence(
             [mock_riffle, mock_riffle, mock_strip, mock_riffle, mock_cut]

@@ -1,18 +1,15 @@
 from shuffl import Deck
-from shuffl.utils import adjacent_pairs
+from itertools import pairwise
+from shuffl.utils._convert import _convert
 from typing import Annotated
 from typing_extensions import Doc
-from shuffl.models import Shuffle
-import numpy as np
 
 
-def adjacent(
-    shuffle: Annotated[Shuffle, Doc("A shuffle model")],
-    num: Annotated[int, Doc("Number of Monte-Carlo simulations")] = 1000,
-) -> Annotated[
-    list[list[float]], Doc("Discrete probability density function for every card")
-]:
-    """Returns average number of adjacent pairs.
+def adjacent_pairs(
+    permutation: Annotated[Deck, Doc("A permutation of the original set")],
+    original: Annotated[Deck, Doc("Original set")],
+) -> Annotated[list[tuple], Doc("List of all adjacent pairs")]:
+    """Returns all adjacent pairs in a given permutation.
 
     Adjacent pairs are pairs of cards that were together in the original
     deck and which are still together in the permutation.
@@ -20,7 +17,7 @@ def adjacent(
     **Example:**
 
     ```python
-    from shuffl.evaluate import adjacent
+    from shuffl.utils import adjacent_pairs
     from shuffl import Deck
 
     # Deck in original order
@@ -34,6 +31,7 @@ def adjacent(
     print(adjacent(permutation, deck))
     ```
     """
-    deck = Deck(range(1, 53))
-
-    return np.mean([len(adjacent_pairs(shuffle(deck), deck)) for _ in range(num)])
+    permutation = _convert(permutation, original)
+    return [
+        (original[i], original[j]) for (i, j) in pairwise(permutation) if i + 1 == j
+    ]

@@ -22,7 +22,6 @@ def _round(deck: Deck, shuffle: Shuffle) -> bool:
 
 def solitaire(
     shuffle: Annotated[Shuffle, Doc("A shuffle model")],
-    deck: Annotated[Deck, Doc("Initial deck of cards")],
     num: Annotated[int, Doc("Number of Monte-Carlo simulations")] = 1000,
 ) -> Annotated[float, Doc("Probability of player A winning")]:
     """Probability of Player A winning at the game New Age Solitaire
@@ -47,4 +46,5 @@ def solitaire(
     print(solitaire(shuffle, deck, 100000))
     ```
     """
+    deck = Deck(range(1, 53))
     return np.mean([_round(deck, shuffle) for _ in range(num)])
